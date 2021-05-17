@@ -1,7 +1,0 @@
-##!/bin/bash
-
-# Elastic Cloud on K8s stack versions
-ECK_OPERATOR_VERSION=1.5.0
-ELASTICSEARCH_VERSION=7.12.1
-KIBANA_VERSION=7.12.1
-APM_VERSION=7.12.1
