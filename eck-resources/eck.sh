@@ -47,7 +47,7 @@ retagAndPush() {
       echo "Loading  eck-operator image"
       docker load -i images/eck-operator-1.5.0.tar.gz
       echo "Pushing image to $2 registry"
-      docker image tag docker.elastic.co/eck/eck-operator:1.5.0 $1/eck-operator:1.5.0
+      docker image tag docker.elastic.co/eck/eck-operator:1.5.0 $2/eck-operator:1.5.0
       docker push $2/eck-operator:1.5.0
       ;;
     elastic)
@@ -84,7 +84,7 @@ case "$1" in
   init)
     if [ "$2" == "--registry" ]; then
     USER_REGISTRY="$3"
-    retagAndPush "operator" $REGISTRY
+    retagAndPush "operator" $USER_REGISTRY
     # Create a folder for rendered files
     mkdir deployments
     # Move templates to deployment folder
