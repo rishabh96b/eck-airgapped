@@ -84,7 +84,10 @@ case "$1" in
   init)
     if [ "$2" == "--registry" ]; then
     USER_REGISTRY="$3"
+    # Re-Tag and push images
     retagAndPush "operator" $USER_REGISTRY
+    retagAndPush "elastic" $USER_REGISTRY
+    retagAndPush "kibana" $USER_REGISTRY
     # Create a folder for rendered files
     mkdir deployments
     # Move templates to deployment folder
