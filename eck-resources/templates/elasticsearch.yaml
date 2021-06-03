@@ -85,6 +85,13 @@ spec:
   nodeSets:
   - name: master-nodes
     count: 3
+    podTemplate:
+      spec:
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
     config:
       node.roles: ["master"]
     volumeClaimTemplates:
@@ -99,6 +106,13 @@ spec:
         storageClassName: awsebscsiprovisioner
   - name: data-nodes
     count: 10
+    podTemplate:
+      spec:
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
     config:
       node.roles: ["data"]
     volumeClaimTemplates:
@@ -109,10 +123,17 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 1000Gi
+            storage: 500Gi
         storageClassName: awsebscsiprovisioner
   - name: ingest-nodes
     count: 10
+    podTemplate:
+      spec:
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
     config:
       node.roles: ["ingest"]
     volumeClaimTemplates:
@@ -123,5 +144,5 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 1000Gi
+            storage: 500Gi
         storageClassName: awsebscsiprovisioner
