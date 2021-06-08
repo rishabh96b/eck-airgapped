@@ -8,11 +8,13 @@ Deploy Elastic Cloud on airgapped K8s.
 ~ cd eck-resources/
 ~ ./build-images.sh
 ```
-4. Transfer the `eck-resources` folder to the bastion host using `scp`
+> You can skip the `./build-images.sh` step if you have downloaded eck-airgapped bundle from AWS S3 bucket.
+
+3. Transfer the `eck-resources` folder to the bastion host using `scp`
 ```bash
-scp -o StrictHostKeyChecking=accept-new ~/path-to/eck-airgapped/eck-resources $USER@$HOST:/path-to/eck-resources
+scp -ro StrictHostKeyChecking=accept-new ~/path-to/eck-airgapped/eck-resources $USER@$HOST:/path-to/eck-resources
 ```
-3. Go inside the `eck-resouces` dir and run `./eck.sh`
+4. Go inside the `eck-resouces` dir and run `./eck.sh`
 
 
 > NOTE: The elasticsearch deployment assumes the availaibility of `awsebscsiprovisioner` storage class and the claims of appx 100Gi for both index and data nodes individually. Please review the templates in the `eck-resources/templates/` directory and modify the configuration as per the requirement.
