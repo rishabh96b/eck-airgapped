@@ -15,7 +15,7 @@ scp -o StrictHostKeyChecking=accept-new ~/path-to/eck-airgapped/eck-resources $U
 3. Go inside the `eck-resouces` dir and run `./eck.sh`
 
 
-> NOTE: The elasticsearch deployment assumes the availaibility of `awsebscsiprovisioner` storage class and the claims of appx 100Gi for both index and data nodes individually.
+> NOTE: The elasticsearch deployment assumes the availaibility of `awsebscsiprovisioner` storage class and the claims of appx 100Gi for both index and data nodes individually. Please review the templates in the `eck-resources/templates/` directory and modify the configuration as per the requirement.
 
 
 ### Commands
