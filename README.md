@@ -15,6 +15,9 @@ scp -o StrictHostKeyChecking=accept-new ~/path-to/eck-airgapped/eck-resources $U
 3. Go inside the `eck-resouces` dir and run `./eck.sh`
 
 
+> NOTE: The elasticsearch deployment assumes the availaibility of `awsebscsiprovisioner` storage class and the claims of appx 100Gi for both index and data nodes individually.
+
+
 ### Commands
 - `./eck.sh init --registry 10.0.0.1:5000`
   - This will get the registry and retag the docker images and push to local registry.
@@ -27,3 +30,11 @@ scp -o StrictHostKeyChecking=accept-new ~/path-to/eck-airgapped/eck-resources $U
   - Installs kibana with default options
 - `./eck.sh logs operator`
   - Show the logs for deployed eck operator
+  
+### Resources
+It is highly recommended to go the official [ECK documentation](https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html) for in-depth references.
+
+### FAQs
+1. How to re-initialize the registry url in case it was incorrect?
+
+ Ans: Delete the `eck-resources/deployment` folder and run `./eck.sh init --registry <my-registry>`
